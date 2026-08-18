@@ -1,3 +1,4 @@
+import Versions from "@renderer/components/Versions";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -8,6 +9,7 @@ function Index() {
   return (
     <div className="p-4">
       <h3 className="p-2">Welcome Home!</h3>
+      <Versions />
     </div>
   );
 }
