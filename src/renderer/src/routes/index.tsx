@@ -1,4 +1,4 @@
-import Versions from "@renderer/components/Versions";
+import Versions from "@renderer/components/examples/Versions";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
