@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/components/theme-provider";
 import "../styles/app.css";
 
 import { createRootRoute, Outlet } from "@tanstack/react-router";
@@ -5,7 +6,10 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 const RootLayout = () => (
   <>
-    <Outlet />
+    <ThemeProvider defaultTheme="system" storageKey="theme">
+      <Outlet />
+    </ThemeProvider>
+
     <TanStackRouterDevtools />
   </>
 );

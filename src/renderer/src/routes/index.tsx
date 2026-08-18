@@ -1,4 +1,6 @@
-import Versions from "@renderer/components/examples/Versions";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import Versions from "@/components/Versions";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -10,6 +12,7 @@ function Index() {
     <div className="p-4">
       <h3 className="p-2">Welcome Home!</h3>
       <Versions />
+      <Badge>Default</Badge>
     </div>
   );
 }
