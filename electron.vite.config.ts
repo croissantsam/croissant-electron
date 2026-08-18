@@ -1,8 +1,8 @@
-import { resolve } from 'path'
-import { defineConfig } from 'electron-vite'
-import react from '@vitejs/plugin-react'
-import { tanstackRouter } from '@tanstack/router-plugin/vite'
-import tailwindcss from '@tailwindcss/vite'
+import { resolve } from "path";
+import { defineConfig } from "electron-vite";
+import react from "@vitejs/plugin-react";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   main: {},
@@ -10,13 +10,16 @@ export default defineConfig({
   renderer: {
     resolve: {
       alias: {
-        '@renderer': resolve('src/renderer/src')
-      }
+        "@renderer": resolve("src/renderer/src"),
+      },
     },
     plugins: [
       tanstackRouter({
-      target: 'react',
-      autoCodeSplitting: true,
-    }),react(), tailwindcss()]
-  }
-})
+        target: "react",
+        autoCodeSplitting: true,
+      }),
+      react(),
+      tailwindcss(),
+    ],
+  },
+});

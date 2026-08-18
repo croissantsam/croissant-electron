@@ -1,15 +1,14 @@
-import '../styles/app.css'
+import "../styles/app.css";
 
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 const RootLayout = () => (
   <>
     <Outlet />
     <TanStackRouterDevtools />
   </>
-)
-
+);
 
 export const Route = createRootRoute({
   head: () => ({
@@ -19,4 +18,4 @@ export const Route = createRootRoute({
     // other head config
   }),
   component: RootLayout,
-})
+});

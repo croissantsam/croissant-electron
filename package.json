@@ -2,9 +2,9 @@
   "name": "perfosant",
   "version": "1.0.0",
   "description": "An Electron application with React and TypeScript",
-  "main": "./out/main/index.js",
-  "author": "example.com",
   "homepage": "https://electron-vite.org",
+  "author": "example.com",
+  "main": "./out/main/index.js",
   "scripts": {
     "format": "oxfmt",
     "fmt:check": "oxfmt --check",
