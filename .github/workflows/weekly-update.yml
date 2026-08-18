@@ -3,7 +3,7 @@ name: Weekly Dependency Update & Build Check
 on:
   schedule:
     # Run every Monday at 9:00 AM UTC
-    - cron: '0 9 * * 1'
+    - cron: "0 9 * * 1"
   workflow_dispatch: # Allow manual trigger
 
 permissions:
@@ -31,8 +31,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'pnpm'
+          node-version: "22"
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -41,7 +41,7 @@ jobs:
         run: |
           # Update all dependencies to latest versions
           pnpm update --latest
-          
+
           # Check if there are any changes
           if git diff --quiet pnpm-lock.yaml; then
             echo "No dependency updates available"
@@ -66,15 +66,15 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore: update dependencies'
-          title: 'chore: weekly dependency updates'
+          commit-message: "chore: update dependencies"
+          title: "chore: weekly dependency updates"
           body: |
             This PR contains the weekly automated dependency updates.
-            
+
             **Changes:**
             - Updated all dependencies to their latest versions
             - Ran linter, typecheck, and build to verify compatibility
-            
+
             **Checks performed:**
             - ✅ Lint (oxlint)
             - ✅ TypeCheck (tsc)
