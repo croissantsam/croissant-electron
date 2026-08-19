@@ -1,5 +1,4 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import Versions from "@/components/Versions";
 import { createFileRoute } from "@tanstack/react-router";
 

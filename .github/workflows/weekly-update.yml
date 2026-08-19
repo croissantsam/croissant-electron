@@ -84,3 +84,4 @@ jobs:
           labels: |
             dependencies
             automated
+          auto-merge: true
