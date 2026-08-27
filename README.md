@@ -1,6 +1,15 @@
-# perfosant
+# croissant-electron
 
-An Electron application with React and TypeScript
+A boilerplate for Electron, React, TypeScript, TanStack Router, Tailwind CSS, and shadcn/ui.
+
+## Create a project
+
+```bash
+npx croissant-electron init my-electron-app
+cd my-electron-app
+pnpm install
+pnpm dev
+```
 
 ## Recommended IDE Setup
 
