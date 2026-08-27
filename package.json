@@ -1,6 +1,6 @@
 {
   "name": "croissant-electron",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A boilerplate and project generator for Electron, TanStack Router, Tailwind CSS, and shadcn/ui.",
   "homepage": "https://github.com/croissantsam/croissant-electron#readme",
   "author": "",
@@ -47,7 +47,6 @@
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
     "build": "npm run typecheck && electron-vite build",
-    "postinstall": "electron-builder install-app-deps",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
