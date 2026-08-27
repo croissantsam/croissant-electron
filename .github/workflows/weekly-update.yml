@@ -4,7 +4,7 @@ on:
   schedule:
     # Run every Monday at 10:00 AM UTC
     - cron: "0 10 * * 1"
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -38,6 +38,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Update dependencies
+        id: update
         run: |
           # Update all dependencies to latest versions
           pnpm update --latest
@@ -45,24 +46,27 @@ jobs:
           # Check if there are any changes
           if git diff --quiet pnpm-lock.yaml; then
             echo "No dependency updates available"
-            echo "has_updates=false" >> $GITHUB_OUTPUT
+            echo "has_updates=false" >> "$GITHUB_OUTPUT"
           else
             echo "Dependencies updated"
-            echo "has_updates=true" >> $GITHUB_OUTPUT
+            echo "has_updates=true" >> "$GITHUB_OUTPUT"
           fi
-        id: update
 
       - name: Run linter
+        if: steps.update.outputs.has_updates == 'true'
         run: pnpm lint
 
       - name: Run typecheck
+        if: steps.update.outputs.has_updates == 'true'
         run: pnpm typecheck
 
       - name: Run build
+        if: steps.update.outputs.has_updates == 'true'
         run: pnpm build
 
       - name: Create Pull Request
         if: steps.update.outputs.has_updates == 'true'
+        id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -76,12 +80,22 @@ jobs:
             - Ran linter, typecheck, and build to verify compatibility
 
             **Checks performed:**
-            - ✅ Lint (oxlint)
-            - ✅ TypeCheck (tsc)
-            - ✅ Build (electron-vite build)
+            - ✅ Lint
+            - ✅ TypeCheck
+            - ✅ Build
+
           branch: weekly/dependency-updates
           delete-branch: true
           labels: |
             dependencies
             automated
-          auto-merge: true
+
+      - name: Enable auto merge
+        if: steps.cpr.outputs.pull-request-number
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge \
+            "${{ steps.cpr.outputs.pull-request-number }}" \
+            --auto \
+            --squash
