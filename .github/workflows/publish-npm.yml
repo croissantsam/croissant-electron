@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   publish:
@@ -32,7 +33,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "24"
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
 
@@ -44,11 +45,6 @@ jobs:
 
       - name: Run typecheck
         run: pnpm typecheck
-
-      - name: Verify npm authentication
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm whoami
 
       - name: Bump patch version
         id: version
@@ -69,8 +65,6 @@ jobs:
           git tag "v${{ steps.version.outputs.version }}"
 
       - name: Publish to npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --access public
 
       - name: Push release commit and tag

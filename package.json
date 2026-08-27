@@ -2,9 +2,12 @@
   "name": "croissant-electron",
   "version": "1.0.0",
   "description": "A boilerplate and project generator for Electron, TanStack Router, Tailwind CSS, and shadcn/ui.",
-  "homepage": "https://github.com/sam/croissant-electron",
+  "homepage": "https://github.com/croissantsam/croissant-electron#readme",
   "author": "",
-  "main": "./out/main/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/croissantsam/croissant-electron.git"
+  },
   "bin": {
     "croissant-electron": "./bin/croissant-electron.cjs"
   },
@@ -32,6 +35,7 @@
     "tsconfig.node.json",
     "tsconfig.web.json"
   ],
+  "main": "./out/main/index.js",
   "scripts": {
     "format": "oxfmt",
     "fmt:check": "oxfmt --check",
