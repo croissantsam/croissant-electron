@@ -1,6 +1,6 @@
 {
   "name": "croissant-electron",
-  "version": "1.0.3",
+  "version": "1.0.2",
   "description": "A boilerplate and project generator for Electron, TanStack Router, Tailwind CSS, and shadcn/ui.",
   "homepage": "https://github.com/croissantsam/croissant-electron#readme",
   "author": "",
@@ -96,7 +96,6 @@
     "typescript": "^7.0.2",
     "vite": "^8.2.2"
   },
-  "packageManager": "pnpm@12.0.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "electron",
