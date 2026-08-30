@@ -2,6 +2,8 @@
 
 A boilerplate for Electron, React, TypeScript, TanStack Router, Tailwind CSS, and shadcn/ui.
 
+Based on [electron-vite.org](https://electron-vite.org/) and [alex8088/electron-vite](https://github.com/alex8088/electron-vite).
+
 ## Create a project
 
 ```bash
