@@ -4,6 +4,7 @@ import * as React from "react";
 import { useForm } from "@tanstack/react-form";
 import { toast } from "sonner";
 import * as z from "zod";
+import { createFileRoute } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -34,7 +35,11 @@ const formSchema = z.object({
     .max(100, "Description must be at most 100 characters."),
 });
 
-export function BugReportForm() {
+export const Route = createFileRoute("/form")({
+  component: BugReportForm,
+});
+
+function BugReportForm() {
   const form = useForm({
     defaultValues: {
       title: "",
