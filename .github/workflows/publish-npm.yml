@@ -77,6 +77,8 @@ jobs:
             - Published to npm
           draft: false
           prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push release commit and tag
         run: git push --follow-tags
