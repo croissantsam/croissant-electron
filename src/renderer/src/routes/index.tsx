@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import Versions from "@/components/Versions";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -12,6 +12,9 @@ function Index() {
       <h3 className="p-2">Welcome Home!</h3>
       <Versions />
       <Badge>Default</Badge>
+      <Link to="/form" className="ml-2 text-blue-500 underline">
+        Go to Form Example
+      </Link>
     </div>
   );
 }
