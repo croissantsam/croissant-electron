@@ -9,7 +9,7 @@
     "url": "git+https://github.com/croissantsam/croissant-electron.git"
   },
   "bin": {
-    "croissant-electron": "./bin/croissant-electron.cjs"
+    "croissant-electron": "./bin/croissant-electron.js"
   },
   "files": [
     ".editorconfig",
