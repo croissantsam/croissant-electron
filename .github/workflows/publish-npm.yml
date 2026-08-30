@@ -67,14 +67,38 @@ jobs:
       - name: Publish to npm
         run: npm publish --access public
 
+      - name: Generate release notes
+        id: release_notes
+        run: |
+          # Get the previous tag
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -z "$PREV_TAG" ]; then
+            # No previous tag, get all commits
+            COMMITS=$(git log --oneline --format="- %s (%h)" HEAD)
+          else
+            # Get commits since last tag
+            COMMITS=$(git log ${PREV_TAG}..HEAD --oneline --format="- %s (%h)")
+          fi
+          
+          # Filter out merge commits, "Retry" commits, release commits, and version bumps for cleaner notes
+          FILTERED_COMMITS=$(echo "$COMMITS" | grep -v "Merge branch" | grep -v "Retry" | grep -v "Retrty" | grep -v "chore: release" | grep -v "Update version" | grep -v "Update with release version" | head -20)
+          
+          if [ -z "$FILTERED_COMMITS" ]; then
+            RELEASE_BODY="Release notes for version ${{ steps.version.outputs.version }}.\n\nNo significant changes since last release."
+          else
+            RELEASE_BODY="Release notes for version ${{ steps.version.outputs.version }}.\n\n### Changes\n${FILTERED_COMMITS}"
+          fi
+          
+          # Escape for JSON
+          RELEASE_BODY_ESCAPED=$(echo -e "$RELEASE_BODY" | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/"/\\"/g')
+          echo "body=$RELEASE_BODY_ESCAPED" >> "$GITHUB_OUTPUT"
+
       - name: Create GitHub Release
         uses: actions/create-release@v1
         with:
           tag_name: "v${{ steps.version.outputs.version }}"
           release_name: "Release v${{ steps.version.outputs.version }}"
-          body: |
-            Release notes for version ${{ steps.version.outputs.version }}.
-            - Published to npm
+          body: ${{ steps.release_notes.outputs.body }}
           draft: false
           prerelease: false
         env:
