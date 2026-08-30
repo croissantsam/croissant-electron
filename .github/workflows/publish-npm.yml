@@ -89,9 +89,12 @@ jobs:
             RELEASE_BODY="Release notes for version ${{ steps.version.outputs.version }}.\n\n### Changes\n${FILTERED_COMMITS}"
           fi
 
-          # Escape for JSON
-          RELEASE_BODY_ESCAPED=$(echo -e "$RELEASE_BODY" | sed ':a;N;$!ba;s/\n/\\n/g' | sed 's/"/\\"/g')
-          echo "body=$RELEASE_BODY_ESCAPED" >> "$GITHUB_OUTPUT"
+          # Use heredoc to properly output multiline string to GITHUB_OUTPUT
+          {
+            echo "body<<EOF"
+            echo -e "$RELEASE_BODY"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release
         uses: actions/create-release@v1
