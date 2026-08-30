@@ -35,7 +35,7 @@ const formSchema = z.object({
     .max(100, "Description must be at most 100 characters."),
 });
 
-export const Route = createFileRoute("/form")({
+export const Route = createFileRoute("/examples/form")({
   component: BugReportForm,
 });
 
