@@ -71,8 +71,8 @@ export default {
   },
   renderer: {
     // vite config options for renderer process
-  }
-}
+  },
+};
 ```
 
 ## Project Structure
