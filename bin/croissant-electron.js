@@ -169,8 +169,7 @@ function init(projectName) {
 
   const targetDirectory = path.resolve(process.cwd(), projectName);
 
-  if (fs.existsSync(targetDirectory) && fs.readdirSync(targetDirectory).length >
- 0) {
+  if (fs.existsSync(targetDirectory) && fs.readdirSync(targetDirectory).length > 0) {
     console.error(`Cannot create project in a non-empty directory: ${targetDirectory}`);
     process.exit(1);
   }
@@ -183,8 +182,7 @@ function init(projectName) {
   writeProjectDotfiles(targetDirectory);
 
   const replacements = [["croissant-electron", packageName]];
-  replaceInFile(path.join(targetDirectory, "electron-builder.yml"), replacements
-);
+  replaceInFile(path.join(targetDirectory, "electron-builder.yml"), replacements);
   replaceInFile(path.join(targetDirectory, "dev-app-update.yml"), replacements);
 
   const cdTarget = path.isAbsolute(projectName) ? targetDirectory : projectName;
