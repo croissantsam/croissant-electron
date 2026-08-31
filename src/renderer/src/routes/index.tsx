@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/mode-toggle";
 import { Badge } from "@/components/ui/badge";
 import Versions from "@/components/Versions";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -12,9 +13,12 @@ function Index() {
       <h3 className="p-2">Welcome Home!</h3>
       <Versions />
       <Badge>Default</Badge>
-      <Link to="/examples/form" className="ml-2 text-blue-500 underline">
-        Go to Form Example
-      </Link>
+      <div className="flex flex-col">
+        <Link to="/examples/form" className="ml-2 text-blue-500 underline">
+          Go to Form Example
+        </Link>
+        <ModeToggle />
+      </div>
     </div>
   );
 }
