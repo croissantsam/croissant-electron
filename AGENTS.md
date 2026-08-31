@@ -3,6 +3,7 @@
 ## Project Overview
 
 This is a boilerplate and project generator for Electron applications using:
+
 - **Electron** - Cross-platform desktop apps
 - **Vite** (via electron-vite) - Build tool and dev server
 - **React 19** - UI framework
@@ -54,23 +55,27 @@ croissant-electron/
 ## Key Technologies & Patterns
 
 ### Electron Architecture
+
 - **Main process** (`src/main/index.ts`): Creates BrowserWindow, handles app lifecycle, IPC
 - **Preload script** (`src/preload/index.ts`): Secure contextBridge for renderer↔main communication
 - **Renderer** (`src/renderer/`): React SPA with TanStack Router
 
 ### Routing (TanStack Router)
+
 - File-based routing in `src/renderer/src/routes/`
 - Route tree auto-generated to `routeTree.gen.ts`
 - Root layout in `__root.tsx` wraps all routes with ThemeProvider + DevTools
 - Use `createRootRoute`, `createFileRoute` from `@tanstack/react-router`
 
 ### Styling
+
 - Tailwind CSS v4 via `@tailwindcss/vite` plugin
 - Global styles in `src/renderer/src/styles/app.css`
 - shadcn/ui components use CSS variables for theming
 - `components.json` defines aliases: `@/components`, `@/lib/utils`, `@/components/ui`, `@/hooks`
 
 ### Component Library (shadcn/ui)
+
 - Components in `src/renderer/src/components/ui/`
 - Base style: `base-nova` (from components.json)
 - Icons: `lucide-react`
@@ -109,53 +114,62 @@ pnpm run build:linux      # Linux
 ## Code Conventions
 
 ### TypeScript
+
 - Strict mode enabled
 - Path aliases: `@/` → `src/renderer/src/`
 - Separate tsconfigs for node (main/preload) and web (renderer)
 
 ### React
+
 - Functional components with hooks
 - TanStack Router for navigation (not React Router)
 - Use `Outlet` for nested routes
 
 ### Electron IPC
+
 - Define types in `src/preload/index.d.ts`
 - Expose via `contextBridge.exposeInMainWorld` in preload
 - Call from renderer via `window.electronAPI.*`
 
 ### Adding shadcn/ui Components
+
 ```bash
 pnpm dlx shadcn@latest add button dialog form
 ```
+
 Components are added to `src/renderer/src/components/ui/`
 
 ## Important Files to Know
 
-| File | Purpose |
-|------|---------|
-| `electron.vite.config.ts` | Vite config for all three processes |
-| `src/main/index.ts` | Main process entry, window management |
-| `src/preload/index.ts` | Secure IPC bridge |
-| `src/renderer/src/main.tsx` | React app bootstrap |
-| `src/renderer/src/routes/__root.tsx` | Root layout (theme, providers) |
-| `components.json` | shadcn/ui configuration |
-| `electron-builder.yml` | Packaging configuration |
+| File                                 | Purpose                               |
+| ------------------------------------ | ------------------------------------- |
+| `electron.vite.config.ts`            | Vite config for all three processes   |
+| `src/main/index.ts`                  | Main process entry, window management |
+| `src/preload/index.ts`               | Secure IPC bridge                     |
+| `src/renderer/src/main.tsx`          | React app bootstrap                   |
+| `src/renderer/src/routes/__root.tsx` | Root layout (theme, providers)        |
+| `components.json`                    | shadcn/ui configuration               |
+| `electron-builder.yml`               | Packaging configuration               |
 
 ## Common Tasks
 
 ### Add a New Route
+
 Create file in `src/renderer/src/routes/` (e.g., `settings.tsx`), TanStack Router auto-generates route tree.
 
 ### Add a New IPC Channel
+
 1. Add type to `src/preload/index.d.ts`
 2. Implement in `src/preload/index.ts` via `contextBridge`
 3. Handle in `src/main/index.ts` via `ipcMain.handle`
 4. Call from renderer via `window.electronAPI.channelName()`
 
 ### Modify Theme
+
 Edit `src/renderer/src/styles/app.css` (CSS variables) and `components.json` (baseColor).
 
 ### Update shadcn/ui Components
+
 ```bash
 pnpm dlx shadcn@latest add -o button  # Overwrite existing
 ```
@@ -169,6 +183,7 @@ pnpm dlx shadcn@latest add -o button  # Overwrite existing
 ## Generator CLI
 
 The `bin/croissant-electron.js` creates new projects:
+
 ```bash
 npx croissant-electron init my-app
 ```
