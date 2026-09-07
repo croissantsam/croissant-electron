@@ -8,6 +8,7 @@ const TEMPLATE_ROOT = path.resolve(__dirname, "..");
 const ignoredNames = new Set([
   ".DS_Store",
   ".git",
+  ".github",
   ".pnpm-store",
   "bin",
   "dist",
