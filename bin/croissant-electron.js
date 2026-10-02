@@ -86,7 +86,7 @@ function updatePackageJson(projectRoot, packageName) {
   packageJson.homepage = "";
   packageJson.author = "";
   packageJson.private = true;
-  packageJson.scripts.postinstall = "electron-builder install-app-deps";
+  packageJson.scripts.postinstall = "install-electron && electron-builder install-app-deps";
 
   delete packageJson.bin;
   delete packageJson.files;
