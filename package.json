@@ -1,6 +1,6 @@
 {
   "name": "croissant-electron",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "The ultimate modern Electron boilerplate & CLI generator with React 19, TypeScript, TanStack Router, Tailwind CSS v4, shadcn/ui, and Oxlint.",
   "keywords": [
     "cross-platform",
