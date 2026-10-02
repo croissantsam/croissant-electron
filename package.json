@@ -1,7 +1,25 @@
 {
   "name": "croissant-electron",
   "version": "1.0.20",
-  "description": "A boilerplate and project generator for Electron, TanStack Router, Tailwind CSS, and shadcn/ui.",
+  "description": "The ultimate modern Electron boilerplate & CLI generator with React 19, TypeScript, TanStack Router, Tailwind CSS v4, shadcn/ui, and Oxlint.",
+  "keywords": [
+    "cross-platform",
+    "desktop-app",
+    "electron",
+    "electron-boilerplate",
+    "electron-template",
+    "electron-vite",
+    "oxfmt",
+    "oxlint",
+    "react",
+    "react19",
+    "shadcn",
+    "shadcn-ui",
+    "tailwind-v4",
+    "tailwindcss",
+    "tanstack-router",
+    "typescript"
+  ],
   "homepage": "https://github.com/croissantsam/croissant-electron#readme",
   "author": "",
   "repository": {
